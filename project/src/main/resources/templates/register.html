@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+
+<div class="login-container" style="position: relative; padding-left: 50px " >
+    <div class="page-title">Register For Employee</div>
+    <div th:if="${errorMessage!= null}" class="error-message" th:utext="${errorMessage}">
+    </div>
+    <br>
+    <form method="POST" th:object="${AccountForm}"
+          th:action="@{/registration}">
+        <table style="position: relative; padding-left: 30px ">
+            <tr>
+                <td>User Name *</td>
+                <td><input th:field="*{userName}" class = "login-input" type="text" name="userName" /></td>
+            </tr>
+            <tr>
+                <td>Email *</td>
+                <td><input th:field="*{email}" class = "login-input" type="text" name="email" /></td>
+            </tr>
+            <tr>
+                <td>Password *</td>
+                <td><input class = "login-input" type="password" th:field="*{EncrytedPassword}" name="EncrytedPassword" /></td>
+            </tr>
+            <tr>
+                <td>Confirm Password *</td>
+                <td><input class = "login-input" type="password" th:field="*{confirmpassword}" name="confirmpassword" /></td>
+            </tr>
+            <tr>
+                <td>Address *</td>
+                <td><input th:field="*{address}" class = "login-input" type="text" name="address" /></td>
+            </tr>
+            <tr>
+                <td>fullname *</td>
+                <td><input th:field="*{fullName}"  class = "login-input" type="text" name="fullname" /></td>
+            </tr>
+            <tr>
+                <td>Age *</td>
+                <td><input th:field="*{age}"  class = "login-input" type="text" name="age" /></td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;</td>
+                <td>
+                    <br>
+                    <input class = "login_btn" style="margin-right: 20px" type="submit"  value="register" />
+                    <input class = "login_btn" type="reset"  value="Reset" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <!-- /login?error=true -->
+
+    <span class="error-message" th:utext="${error}"></span>
+</div>
+
+<th:block th:include="/_footer"></th:block>
+
+</body>
+</html>

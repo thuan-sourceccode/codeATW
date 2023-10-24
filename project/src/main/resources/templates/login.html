@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+
+
+<div class="login-container" style="position: relative; padding-left: 50px " >
+
+    <br>
+    <h2 style="margin-top: 50px">Enter username and password</h2>
+    <br>
+    <form method="POST"
+          th:action="@{/j_spring_security_check}">
+        <table style="position: relative; padding-left: 30px ">
+            <tr>
+                <td>User Name *</td>
+                <td><input class = "login-input" name="userName" /></td>
+            </tr>
+            <tr>
+                <td>Password *</td>
+                <td><input  class = "login-input" type="password" name="password" /></td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;</td>
+                <td>
+                    <br>
+                    <input class = "btn btn-primary" style="margin-right: 20px" type="submit"  value="Login" />
+                    <input class = "btn btn-danger" type="reset" style="margin-right: 20px"  value="Reset" />
+                    <div>
+                    <a th:href="@{/forgotpassword}">Forgot your Password?</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <!-- /login?error=true -->
+    <th:block th:if="${#session != null && #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}">
+        <div th:if= "${#request.getParameter('error') == 'true'}"
+             style="color: red; margin: 10px 0px;">
+            Login Failed!!!<br /> Reason :
+            <span th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}"></span>
+        </div>
+    </th:block>
+
+    <span class="error-message" th:utext="${error}"></span>
+
+<!--    <div style="text-align:left">-->
+<!--        <h3>User/Password:</h3>-->
+<!--        <ul>-->
+<!--            <li>employee1/123</li>-->
+<!--            <li>manager1/123</li>-->
+<!--        </ul>-->
+<!--    </div>-->
+</div>
+
+<th:block th:include="/_footer"></th:block>
+
+</body>
+</html>

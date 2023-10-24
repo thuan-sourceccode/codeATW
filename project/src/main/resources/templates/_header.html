@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="header-container"
+     xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+    <div class="site-name"><img class="image-1" th:src="@{/111.png}" />Online Shop</div>
+
+    <div class="header-bar">
+        <th:block sec:authorize="isAuthenticated()">
+            Hello
+            <i class="fas fa-user-circle"><a th:href="@{/admin/accountInfo}" th:utext="${#request.userPrincipal.name}">..</a></i>
+            &nbsp;|&nbsp;
+            <a th:href="@{/admin/logout}">Logout</a>
+        </th:block>
+
+        <th:block sec:authorize="!isAuthenticated()">
+            <i class="fas fa-user-circle"><a th:href="@{/admin/login}">Login</a></i>/<a th:href="@{/admin/register}">Register</a>
+        </th:block>
+    </div>
+
+</div>
+</body>
+</html>

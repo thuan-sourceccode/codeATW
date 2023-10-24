@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ForgotPassword</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+
+
+<div class="login-container" style="position: relative; padding-left: 50px " >
+    <br>
+    <h2 style="margin-top: 50px">Verify OTP</h2>
+    <br>
+    <div class="alert alert-success mt-3" role="alert">
+        We have sent OTP to your email . . . .
+    </div>
+    <form method="POST" th:object="${AccountForm}"
+          th:action="@{/verify-otp}">
+        <table style="position: relative; padding-left: 30px ">
+            <tr>
+                <td>OTP *</td>
+                <td><input type="text" required="required" name="otp" placeholder="Enter OTP....." /></td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;</td>
+                <td>
+                    <br>
+                    <input th:field="*{otp}" class = "btn btn-success" style="align-content: center" type="submit"  value="Verify OTP" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<th:block th:include="/_footer"></th:block>
+</body>
+</html>

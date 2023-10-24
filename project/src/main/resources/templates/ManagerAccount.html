@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manager Account</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+
+<div class="customer-info-container">
+    <h3>Customer Information:</h3>
+    <ul th:each="accountinfo : ${accountForms.list}">
+        <li>Name: <span th:utext="${accountinfo.userName}"></span></li>
+        <li>Email: <span th:utext="${accountinfo.email}"></span></li>
+        <li>Address: <span th:utext="${accountinfo.address}"></span></li>
+    </ul>
+</div>
+
+<th:block th:include="/_footer"></th:block>
+</body>
+</html>
